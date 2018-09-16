@@ -77,6 +77,12 @@
     <Compile Include="FormLinkFile.Designer.cs">
       <DependentUpon>FormLinkFile.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTaskUpadte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTaskUpadte.Designer.cs">
+      <DependentUpon>FormTaskUpadte.cs</DependentUpon>
+    </Compile>
     <Compile Include="TaskPriority.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormLinkFile.resx">
       <DependentUpon>FormLinkFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTaskUpadte.resx">
+      <DependentUpon>FormTaskUpadte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

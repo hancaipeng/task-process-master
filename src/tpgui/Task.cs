@@ -19,5 +19,6 @@ namespace xworks.taskprocess
 		public TaskStatus Status;
 		public string Checker;//确认者
 		public DateTime CheckTime;//确认时间
+        public DateTime FinishTime;//完成时间
 	}
 }

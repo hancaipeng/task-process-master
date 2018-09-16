@@ -4,3 +4,4 @@ src/tpgui/bin/Debug/tp.vshost.exe
 src/tpgui/bin/Debug/tp.vshost.exe.config
 src/tpgui/bin/Debug/tp.vshost.exe.manifest
 tpgui.v11.suo
+ src/.vs/

@@ -10,52 +10,29 @@ using System.Windows.Forms;
 
 namespace xworks.taskprocess
 {
-    public partial class FormTaskEdit : Form
+    public partial class FormTaskUpadte : Form
     {
-        ListViewItem oldItem = new ListViewItem();
-		public FormTaskEdit()
-		{
-			InitializeComponent();
-		}
-
-        private void Label1_Click(object sender, EventArgs e)
+        public string[] str = new string[13];
+        public FormTaskUpadte()
         {
-
+            InitializeComponent();
         }
 
-        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            
-            
-           
-
-        }
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void Button1_Click_1(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             TaskFile tf = new TaskFile();
-            string str = " ";
+            string radiovalue = " ";
             foreach (Control c in groupBox1.Controls)
             {
                 if (c is RadioButton)
                 {
                     if ((c as RadioButton).Checked)
                     {
-                        str = c.Text;
+                        radiovalue = c.Text;
                     }
                 }
             }
-            if (textBox1.Text.ToString() == ""|| textBox2.Text.ToString() == "")
+            if (textBox1.Text.ToString() == "" || textBox2.Text.ToString() == "")
             {
                 MessageBox.Show("作业者和详细不能为空");
             }
@@ -67,12 +44,29 @@ namespace xworks.taskprocess
                 }
                 else
                 {
-                    tf.Addtask(str, dateTimePicker1.Value.ToString("yyyyMMddHHmmss"), textBox2.Text.ToString(), textBox1.Text.ToString(), DateTime.Now.ToString("yyyyMMddHHmmss"));
+                    tf.Update(str[11].ToString(),radiovalue,dateTimePicker1.Value.ToString("yyyyMMddHHmmss"),textBox2.Text.ToString(),textBox1.Text.ToString());
                     this.DialogResult = DialogResult.OK;
-                    MessageBox.Show("添加成功");
+                    MessageBox.Show("修改成功");
                     this.Close();
                 }
             }
+        }
+
+        private void FormTaskUpadte_Load(object sender, EventArgs e)
+        {
+            foreach (Control c in groupBox1.Controls)
+            {
+                if (c is RadioButton)
+                {
+                    if ((c as RadioButton).Text==str[12])
+                    {
+                        (c as RadioButton).Checked = true;
+                    }
+                }
+            }
+            dateTimePicker1.Value = DateTime.ParseExact(str[10], "yy/MM/dd", System.Globalization.CultureInfo.CurrentCulture);
+            textBox2.Text = str[7];
+            textBox1.Text = str[3];
         }
 
         private void button3_Click(object sender, EventArgs e)
