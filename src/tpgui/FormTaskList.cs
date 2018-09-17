@@ -215,13 +215,14 @@ namespace xworks.taskprocess
                      
                     }
                 }
-                  
+                Listview(Program.Tasks);
+
             }
             catch (Exception )
             {
                 MessageBox.Show("请先选择需要删除的项目");
             }
-            Listview(Program.Tasks);
+            
         }
 
         private void 高ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -237,14 +238,15 @@ namespace xworks.taskprocess
                         tf.UpdatePriority(listView1.SelectedItems[i].SubItems[11].Text, "高");
                       
                     }
+                    Listview(Program.Tasks);
                 }
-                   
+               
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-            Listview(Program.Tasks);
+            
         }
 
         private void 中ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -260,14 +262,15 @@ namespace xworks.taskprocess
                         tf.UpdatePriority(listView1.SelectedItems[i].SubItems[11].Text, "中");
 
                     }
+                    Listview(Program.Tasks);
                 }
-
+              
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-            Listview(Program.Tasks);
+         
         }
 
         private void 一般ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -280,17 +283,18 @@ namespace xworks.taskprocess
                     int b = listView1.SelectedItems.Count;
                     for (int i = 0; i < b; i++)
                     {
-                        tf.UpdatePriority(listView1.SelectedItems[i].SubItems[11].Text, "一般");
+                        tf.UpdatePriority(listView1.SelectedItems[i].SubItems[11].Text, "普通");
 
                     }
+                    Listview(Program.Tasks);
                 }
-
+               
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-            Listview(Program.Tasks);
+            
         }
 
         private void 低ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -306,14 +310,15 @@ namespace xworks.taskprocess
                         tf.UpdatePriority(listView1.SelectedItems[i].SubItems[11].Text, "低");
 
                     }
+                    Listview(Program.Tasks);
                 }
-
+               
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-            Listview(Program.Tasks);
+           
         }
 
         private void 保存SToolStripMenuItem_Click(object sender, EventArgs e)
