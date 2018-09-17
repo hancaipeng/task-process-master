@@ -55,7 +55,7 @@ namespace xworks.taskprocess
                     }
                     else
                     {
-                        MessageBox.Show(node.Attributes["id"].Value + "节点不对");
+                        MessageBox.Show("节点不对");
                     }
                 }
                 return Program.Tasks;
