@@ -23,7 +23,7 @@ namespace xworks.taskprocess
                 foreach (XmlElement node in rowpersonnodes)
                 {
                     Task task = new Task();
-                    if (Nodecheck(filePath) == true)
+                    if (NodeCheck(filePath) == true)
                     {
                         if (Datecheck(node.SelectSingleNode("SubmitTime").InnerText) == true && Datecheck(node.SelectSingleNode("SubmitTime").InnerText) == true && Datecheck(node.SelectSingleNode("CheckTime").InnerText) == true&&Datecheck(node.SelectSingleNode("FinishTime").InnerText)==true)
                         {
@@ -72,32 +72,55 @@ namespace xworks.taskprocess
             return DateTime.TryParseExact(checkdate, "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal, out DateTime result);
         }
 
-        bool Nodecheck(string filePath)
+        bool NodeCheck(string filepath)
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(filePath);
-            XmlElement rootElem = doc.DocumentElement;
-            XmlNode id = rootElem.SelectSingleNode("task");
-            XmlNode author = rootElem.SelectSingleNode("task/Author");
-            XmlNode submittime = rootElem.SelectSingleNode("task/SubmitTime");
-            XmlNode priority = rootElem.SelectSingleNode("task/Priority");
-            XmlNode duetime = rootElem.SelectSingleNode("task/DueTime");
-            XmlNode assignee = rootElem.SelectSingleNode("task/Assignee");
-            XmlNode content = rootElem.SelectSingleNode("task/Content");
-            XmlNode handlingnote = rootElem.SelectSingleNode("task/HandlingNote");
-            XmlNode status = rootElem.SelectSingleNode("task/Status");
-            XmlNode checker = rootElem.SelectSingleNode("task/Checker");
-            XmlNode checktime = rootElem.SelectSingleNode("task/CheckTime");
-
-            if (id.Attributes["id"]!=null&&author!=null&&submittime!=null&&priority!=null&&duetime!=null&&assignee!=null&&content!=null&&handlingnote!=null&&status!=null&&checker!=null&&checktime!=null)
+            doc.Load(filepath);
+            XmlElement root = doc.DocumentElement;
+            if (root.SelectSingleNode("task") != null)
             {
-                return true;
-            }else
+                XmlNodeList rowpersonnodes = root.GetElementsByTagName("task");
+                List<bool> bo = new List<bool>();
+                bool bo1 = true;
+                foreach (XmlElement node in rowpersonnodes)
+                {
+                    XmlNode author = node.SelectSingleNode("Author");
+                    XmlNode submittime = node.SelectSingleNode("SubmitTime");
+                    XmlNode priority = node.SelectSingleNode("Priority");
+                    XmlNode duetime = node.SelectSingleNode("DueTime");
+                    XmlNode assignee = node.SelectSingleNode("Assignee");
+                    XmlNode content = node.SelectSingleNode("Content");
+                    XmlNode handlingnote = node.SelectSingleNode("HandlingNote");
+                    XmlNode status = node.SelectSingleNode("Status");
+                    XmlNode checker = node.SelectSingleNode("Checker");
+                    XmlNode checktime = node.SelectSingleNode("CheckTime");
+                    if (node.Attributes["id"] != null && author != null && submittime != null && priority != null && duetime != null && assignee != null && content != null && handlingnote != null && status != null && checker != null && checktime != null)
+                    {
+                        bo.Add(true);
+                    }
+                    else
+                    {
+                       bo.Add(false);
+                    }
+                }
+                foreach(bool n in bo)
+                {
+                    if (n == false)
+                    {
+                        bo1 = false;
+                    }
+                }
+
+                return bo1;
+            }
+            else
             {
                 return false;
             }
-        }
+           
 
+        }
+ 
         bool IsXml(string Path)
         {
             StreamReader sr = new StreamReader(Path);
