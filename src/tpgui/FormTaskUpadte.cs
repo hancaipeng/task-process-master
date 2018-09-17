@@ -18,7 +18,7 @@ namespace xworks.taskprocess
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             TaskFile tf = new TaskFile();
             string radiovalue = " ";
@@ -69,7 +69,7 @@ namespace xworks.taskprocess
             textBox1.Text = str[3];
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             MessageBoxButtons messButton = MessageBoxButtons.OKCancel;
             DialogResult dr = MessageBox.Show("确定要退出吗?", "退出编辑", messButton);

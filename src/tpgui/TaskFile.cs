@@ -174,13 +174,7 @@ namespace xworks.taskprocess
 
         public void Addtask(string priority,string duetime,string assignee,string content,string submittime)
         {
-            if (Program.Tasks == null)
-            {
-                MessageBox.Show("请先打开文件");
-            }
-            else
-            {
-                Task task = new Task
+            Task task = new Task
                 {
                     Id = Guid.NewGuid(),
                     Author = "张三",
@@ -196,7 +190,7 @@ namespace xworks.taskprocess
                     FinishTime = DateTime.ParseExact("19000101000000", "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture)
                 };
                 Program.Tasks.Add(task);
-            }
+         
         }
         
         public void Delet(string id)

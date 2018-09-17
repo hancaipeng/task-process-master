@@ -157,7 +157,7 @@
             // 
             this.columnHeader9.DisplayIndex = 9;
             this.columnHeader9.Text = "确认日";
-            this.columnHeader9.Width = 66;
+            this.columnHeader9.Width = 88;
             // 
             // columnHeader8
             // 
@@ -236,7 +236,7 @@
             this.toolStripButton6.Name = "toolStripButton6";
             this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton6.Text = "删除";
-            this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
+            this.toolStripButton6.Click += new System.EventHandler(this.ToolStripButton6_Click);
             // 
             // toolStripSeparator1
             // 
@@ -271,7 +271,7 @@
             // 
             this.高ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("高ToolStripMenuItem.Image")));
             this.高ToolStripMenuItem.Name = "高ToolStripMenuItem";
-            this.高ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.高ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.高ToolStripMenuItem.Text = "高";
             this.高ToolStripMenuItem.Click += new System.EventHandler(this.高ToolStripMenuItem_Click);
             // 
@@ -279,7 +279,7 @@
             // 
             this.中ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("中ToolStripMenuItem.Image")));
             this.中ToolStripMenuItem.Name = "中ToolStripMenuItem";
-            this.中ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.中ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.中ToolStripMenuItem.Text = "中";
             this.中ToolStripMenuItem.Click += new System.EventHandler(this.中ToolStripMenuItem_Click);
             // 
@@ -287,7 +287,7 @@
             // 
             this.一般ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("一般ToolStripMenuItem.Image")));
             this.一般ToolStripMenuItem.Name = "一般ToolStripMenuItem";
-            this.一般ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.一般ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.一般ToolStripMenuItem.Text = "普通";
             this.一般ToolStripMenuItem.Click += new System.EventHandler(this.一般ToolStripMenuItem_Click);
             // 
@@ -295,7 +295,7 @@
             // 
             this.低ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("低ToolStripMenuItem.Image")));
             this.低ToolStripMenuItem.Name = "低ToolStripMenuItem";
-            this.低ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.低ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.低ToolStripMenuItem.Text = "低";
             this.低ToolStripMenuItem.Click += new System.EventHandler(this.低ToolStripMenuItem_Click);
             // 
@@ -383,7 +383,7 @@
             // 保存SToolStripMenuItem
             // 
             this.保存SToolStripMenuItem.Name = "保存SToolStripMenuItem";
-            this.保存SToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.保存SToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.保存SToolStripMenuItem.Text = "保存(&S)";
             this.保存SToolStripMenuItem.Click += new System.EventHandler(this.保存SToolStripMenuItem_Click);
             // 

@@ -202,7 +202,7 @@ namespace xworks.taskprocess
             }
         }
 
-        private void toolStripButton6_Click(object sender, EventArgs e)
+        private void ToolStripButton6_Click(object sender, EventArgs e)
         {
             try
             {
