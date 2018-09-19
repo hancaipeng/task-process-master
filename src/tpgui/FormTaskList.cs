@@ -129,11 +129,7 @@ namespace xworks.taskprocess
             };
             sfd.ShowDialog();
             string file = sfd.FileName;
-            if (file == "")
-            {
-                MessageBox.Show("请选择保存路径");
-            }
-            else
+            if (file != "")
             {
                 tf.Savefile(file);
             }
@@ -235,7 +231,7 @@ namespace xworks.taskprocess
                     int b = listView1.SelectedItems.Count;
                     for (int i = 0; i < b; i++)
                     {
-                        tf.UpdatePriority(listView1.SelectedItems[i].SubItems[11].Text, "高");
+                        tf.UpdatePriority(listView1.SelectedItems[i].SubItems[11].Text, (TaskPriority)Enum.Parse(typeof(TaskPriority), "0"));
                       
                     }
                     Listview(Program.Tasks);
@@ -259,7 +255,7 @@ namespace xworks.taskprocess
                     int b = listView1.SelectedItems.Count;
                     for (int i = 0; i < b; i++)
                     {
-                        tf.UpdatePriority(listView1.SelectedItems[i].SubItems[11].Text, "中");
+                        tf.UpdatePriority(listView1.SelectedItems[i].SubItems[11].Text, (TaskPriority)Enum.Parse(typeof(TaskPriority), "1"));
 
                     }
                     Listview(Program.Tasks);
@@ -283,7 +279,7 @@ namespace xworks.taskprocess
                     int b = listView1.SelectedItems.Count;
                     for (int i = 0; i < b; i++)
                     {
-                        tf.UpdatePriority(listView1.SelectedItems[i].SubItems[11].Text, "普通");
+                        tf.UpdatePriority(listView1.SelectedItems[i].SubItems[11].Text, (TaskPriority)Enum.Parse(typeof(TaskPriority), "2"));
 
                     }
                     Listview(Program.Tasks);
@@ -299,6 +295,7 @@ namespace xworks.taskprocess
 
         private void 低ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ChoicePriority(listView1.SelectedItems[i].SubItems[11].Text, (TaskPriority)Enum.Parse(typeof(TaskPriority), "3"));
             try
             {
                 TaskFile tf = new TaskFile();
@@ -307,7 +304,7 @@ namespace xworks.taskprocess
                     int b = listView1.SelectedItems.Count;
                     for (int i = 0; i < b; i++)
                     {
-                        tf.UpdatePriority(listView1.SelectedItems[i].SubItems[11].Text, "低");
+                        tf.UpdatePriority(listView1.SelectedItems[i].SubItems[11].Text, (TaskPriority)Enum.Parse(typeof(TaskPriority), "3"));
 
                     }
                     Listview(Program.Tasks);
@@ -329,6 +326,29 @@ namespace xworks.taskprocess
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        void ChoicePriority(string id, TaskPriority priority, SelectedItems selectedItems)
+        {
+            try
+            {
+                TaskFile tf = new TaskFile();
+                if (this.listView1.SelectedItems.Count > 0)
+                {
+                    int b = listView1.SelectedItems.Count;
+                    for (int i = 0; i < b; i++)
+                    {
+                        tf.UpdatePriority(id,priority);
+
+                    }
+                    Listview(Program.Tasks);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

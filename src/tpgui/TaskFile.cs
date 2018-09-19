@@ -23,7 +23,7 @@ namespace xworks.taskprocess
                 foreach (XmlElement node in rowpersonnodes)
                 {
                     Task task = new Task();
-                    if (NodeCheck(filePath) == true)
+                    if (NodeCheck(filePath,doc) == true)
                     {
                         if (Datecheck(node.SelectSingleNode("SubmitTime").InnerText) == true && Datecheck(node.SelectSingleNode("SubmitTime").InnerText) == true && Datecheck(node.SelectSingleNode("CheckTime").InnerText) == true&&Datecheck(node.SelectSingleNode("FinishTime").InnerText)==true)
                         {
@@ -72,10 +72,8 @@ namespace xworks.taskprocess
             return DateTime.TryParseExact(checkdate, "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal, out DateTime result);
         }
 
-        bool NodeCheck(string filepath)
+        bool NodeCheck(string filepath, XmlDocument doc)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(filepath);
             XmlElement root = doc.DocumentElement;
             if (root.SelectSingleNode("task") != null)
             {
@@ -241,14 +239,14 @@ namespace xworks.taskprocess
             }
         }
 
-        public void UpdatePriority(string id,string priority)
+        public void UpdatePriority(string id, TaskPriority priority)
         {
 
             foreach (Task x in Program.Tasks)
             {
                 if (x.Id == Guid.Parse(id))
                 {
-                    x.Priority = (TaskPriority)Enum.Parse(typeof(TaskPriority), priority);
+                    x.Priority = priority;
                 }
             }
         }
