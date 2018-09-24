@@ -8,7 +8,7 @@ namespace xworks.taskprocess
 {
 	class Task
 	{
-		public Guid Id;//唯一识别ID
+		public string Id;//唯一识别ID
 		public string Author;//提交者
 		public DateTime SubmitTime;//提交时间
 		public TaskPriority Priority;//优先度

@@ -8,9 +8,9 @@ namespace xworks.taskprocess
 {
 	enum TaskPriority
 	{
-		高 = 0,
-		中,
-		普通,
-		低
-	}
+        High = 0,
+        Middle,
+        Normal,
+        Low
+    }
 }

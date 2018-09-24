@@ -13,6 +13,7 @@ namespace xworks.taskprocess
     public partial class FormTaskUpadte : Form
     {
         public string[] str = new string[13];
+        TaskPriority priority = (TaskPriority)Enum.Parse(typeof(TaskPriority), "Normal");
         public FormTaskUpadte()
         {
             InitializeComponent();
@@ -21,17 +22,6 @@ namespace xworks.taskprocess
         private void Button1_Click(object sender, EventArgs e)
         {
             TaskFile tf = new TaskFile();
-            string radiovalue = " ";
-            foreach (Control c in groupBox1.Controls)
-            {
-                if (c is RadioButton)
-                {
-                    if ((c as RadioButton).Checked)
-                    {
-                        radiovalue = c.Text;
-                    }
-                }
-            }
             if (textBox1.Text.ToString() == "" || textBox2.Text.ToString() == "")
             {
                 MessageBox.Show("作业者和详细不能为空");
@@ -44,7 +34,7 @@ namespace xworks.taskprocess
                 }
                 else
                 {
-                    tf.Update(str[11].ToString(),radiovalue,dateTimePicker1.Value.ToString("yyyyMMddHHmmss"),textBox2.Text.ToString(),textBox1.Text.ToString());
+                    tf.UpdateTask(str[11].ToString(), priority, dateTimePicker1.Value.ToString("yyyyMMddHHmmss"),textBox2.Text.ToString(),textBox1.Text.ToString());
                     this.DialogResult = DialogResult.OK;
                     MessageBox.Show("修改成功");
                     this.Close();
@@ -77,6 +67,26 @@ namespace xworks.taskprocess
             {
                 this.Close();
             }
+        }
+
+        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            priority = (TaskPriority)Enum.Parse(typeof(TaskPriority), "High");
+        }
+
+        private void RadioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            priority = (TaskPriority)Enum.Parse(typeof(TaskPriority), "Middle");
+        }
+
+        private void RadioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            priority = (TaskPriority)Enum.Parse(typeof(TaskPriority), "Normal");
+        }
+
+        private void RadioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            priority = (TaskPriority)Enum.Parse(typeof(TaskPriority), "Low");
         }
     }
 }

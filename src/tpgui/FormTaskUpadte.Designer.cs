@@ -69,6 +69,7 @@
             this.radioButton3.Text = "普通";
             this.radioButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.RadioButton3_CheckedChanged);
             // 
             // radioButton1
             // 
@@ -82,6 +83,7 @@
             this.radioButton1.Text = "高";
             this.radioButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -95,6 +97,7 @@
             this.radioButton2.Text = "中";
             this.radioButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
             // 
             // radioButton4
             // 
@@ -108,6 +111,7 @@
             this.radioButton4.Text = "低";
             this.radioButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.RadioButton4_CheckedChanged);
             // 
             // textBox2
             // 
