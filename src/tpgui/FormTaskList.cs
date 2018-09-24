@@ -142,7 +142,7 @@ namespace xworks.taskprocess
             };
             sfd.ShowDialog();
             string file = sfd.FileName;
-            if (file != "")
+            if (string.IsNullOrEmpty(file)==false)
             {
                 tf.Savefile(file);
             }
