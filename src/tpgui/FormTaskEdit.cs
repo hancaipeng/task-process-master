@@ -16,6 +16,7 @@ namespace xworks.taskprocess
         TaskPriority priority = (TaskPriority)Enum.Parse(typeof(TaskPriority), "Normal");
         public string updateoradd;
         public string[] updatetask = new string[13];
+        public bool closeedit = true;
         public FormTaskEdit()
 		{
 			InitializeComponent();
@@ -65,14 +66,33 @@ namespace xworks.taskprocess
                         switch (updateoradd)
                         {
                             case "add":
-                                tf.Addtask(priority, dateTimePicker1.Value.ToString("yyyyMMddHHmmss"), textBox2.Text, textBox1.Text, DateTime.Now.ToString("yyyyMMddHHmmss"));
+                                Task addtask = new Task
+                                {
+                                    Priority = priority,
+                                    DueTime = DateTime.ParseExact(dateTimePicker1.Value.ToString("yyyyMMddHHmmss"), "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture),
+                                    Assignee = textBox2.Text,
+                                    Content = textBox1.Text,
+                                    SubmitTime = DateTime.ParseExact(DateTime.Now.ToString("yyyyMMddHHmmss"), "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture)
+                                };
+                                addtask.Assignee = textBox2.Text;
+                                tf.Addtask(addtask);
                                 break;
                             case "update":
-                                tf.UpdateTask(updatetask[11].ToString(), priority, dateTimePicker1.Value.ToString("yyyyMMddHHmmss"), textBox2.Text.ToString(), textBox1.Text.ToString());
+                                Task udtask = new Task
+                                {
+                                    Priority = priority,
+                                    DueTime = DateTime.ParseExact(dateTimePicker1.Value.ToString("yyyyMMddHHmmss"), "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture),
+                                    Assignee = textBox2.Text,
+                                    Content = textBox1.Text,
+                                    SubmitTime = DateTime.ParseExact(DateTime.Now.ToString("yyyyMMddHHmmss"), "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture),
+                                    Id= updatetask[11].ToString(),
+                                };
+                                tf.UpdateTask(udtask);
                                 break;
                         }
                         this.DialogResult = DialogResult.OK;
                         MessageBox.Show("编辑成功");
+                        closeedit = false;
                         this.Close();
                     }
                 }
@@ -86,6 +106,7 @@ namespace xworks.taskprocess
             DialogResult dr = MessageBox.Show("确定要退出吗?", "退出编辑", messButton);
             if (dr == DialogResult.OK)
             {
+                closeedit = false;
                 this.Close();
             }
         }
@@ -149,14 +170,17 @@ namespace xworks.taskprocess
 
         private void FormTaskEdit_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult dr = MessageBox.Show("你确定要关闭此窗体么？", "关闭提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (dr == DialogResult.No)
+            if (closeedit == true)
             {
-                e.Cancel = true;
-            }
-            else
-            {
-                e.Cancel = false;
+                DialogResult dr = MessageBox.Show("你确定要关闭此窗体么？", "关闭提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (dr == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    e.Cancel = false;
+                }
             }
         }
     }

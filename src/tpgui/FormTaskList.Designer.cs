@@ -43,7 +43,7 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this._toolStripButtonOpen = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.保存 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
@@ -174,7 +174,7 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._toolStripButtonOpen,
-            this.toolStripButton4,
+            this.保存,
             this.toolStripSeparator3,
             this.toolStripButton2,
             this.toolStripButton6,
@@ -204,15 +204,15 @@
             this._toolStripButtonOpen.Text = "開く(&O)";
             this._toolStripButtonOpen.Click += new System.EventHandler(this._toolStripButtonOpen_Click);
             // 
-            // toolStripButton4
+            // 保存
             // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton4.Text = "保存";
-            this.toolStripButton4.Click += new System.EventHandler(this.ToolStripButton4_Click);
+            this.保存.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.保存.Image = ((System.Drawing.Image)(resources.GetObject("保存.Image")));
+            this.保存.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.保存.Name = "保存";
+            this.保存.Size = new System.Drawing.Size(23, 22);
+            this.保存.Text = "保存";
+            this.保存.Click += new System.EventHandler(this.ToolStripButton4_Click);
             // 
             // toolStripSeparator3
             // 
@@ -519,7 +519,7 @@
 		private System.Windows.Forms.ToolStripButton toolStripButton2;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripButton toolStripButton3;
-		private System.Windows.Forms.ToolStripButton toolStripButton4;
+		private System.Windows.Forms.ToolStripButton 保存;
 		private System.Windows.Forms.MenuStrip menuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem 文件FToolStripMenuItem;
 		private System.Windows.Forms.ColumnHeader columnHeader1;

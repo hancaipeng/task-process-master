@@ -14,53 +14,50 @@ namespace xworks.taskprocess
         public static List<Task> Tasks { get; set; }
         public static int UpdateLine { get; set; }
         public const string NODE_NAME_TASK = "task";
-		public List<Task> LoadTasks(string filePath)
-		{
-            Tasks  = new List<Task>();
+        public List<Task> LoadTasks(string filePath)
+        {
+            Tasks = new List<Task>();
             if (IsXml(filePath) != null)
             {
                 XmlDocument doc = new XmlDocument();
-                doc= IsXml(filePath);
+                doc = IsXml(filePath);
                 XmlElement rootElem = doc.DocumentElement;
                 XmlNodeList rowpersonnodes = rootElem.GetElementsByTagName(NODE_NAME_TASK);
                 foreach (XmlElement node in rowpersonnodes)
                 {
                     Task task = new Task();
-                    if (CheckNodeExists(filePath,doc) == true)
+                    if (CheckNodeExists(filePath, doc) == false)
                     {
-                        if (Datecheck(node.SelectSingleNode("SubmitTime").InnerText) == true && Datecheck(node.SelectSingleNode("SubmitTime").InnerText) == true
-                            && Datecheck(node.SelectSingleNode("CheckTime").InnerText) == true&&Datecheck(node.SelectSingleNode("FinishTime").InnerText)==true)
-                        {
-                            if (Enum.IsDefined(typeof(TaskPriority), (TaskPriority)Enum.Parse(typeof(TaskPriority), node.SelectSingleNode("Priority").InnerText)) == true
-                                && Enum.IsDefined(typeof(TaskStatus), (TaskStatus)Enum.Parse(typeof(TaskStatus), node.SelectSingleNode("Status").InnerText)) == true)
-                            {
-                                task.Id = node.Attributes["id"].Value;
-                                task.Author = node.SelectSingleNode("Author").InnerText;
-                                task.SubmitTime = DateTime.ParseExact(node.SelectSingleNode("SubmitTime").InnerText, "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture);
-                                task.Priority = (TaskPriority)Enum.Parse(typeof(TaskPriority), node.SelectSingleNode("Priority").InnerText);
-                                task.DueTime = DateTime.ParseExact(node.SelectSingleNode("DueTime").InnerText, "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture);
-                                task.Assignee = node.SelectSingleNode("Assignee").InnerText;
-                                task.Content = node.SelectSingleNode("Content").InnerText;
-                                task.HandlingNote = node.SelectSingleNode("HandlingNote").InnerText;
-                                task.Status = (TaskStatus)Enum.Parse(typeof(TaskStatus), node.SelectSingleNode("Status").InnerText);
-                                task.Checker = node.SelectSingleNode("Checker").InnerText;
-                                task.CheckTime = DateTime.ParseExact(node.SelectSingleNode("CheckTime").InnerText, "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture);
-                                task.FinishTime = DateTime.ParseExact(node.SelectSingleNode("FinishTime").InnerText, "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture);
-                                Tasks.Add(task);
-                            }
-                            else
-                            {
-                                MessageBox.Show(node.Attributes["id"].Value + "枚举类型不对");
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show(node.Attributes["id"].Value + "时间格式不对");
-                        }
+                        MessageBox.Show(node.Attributes["id"].Value + "节点不对");
+                        return Tasks;
+                    }
+                    if (Datecheck(node.SelectSingleNode("SubmitTime").InnerText) == false || Datecheck(node.SelectSingleNode("SubmitTime").InnerText) == false
+                            || Datecheck(node.SelectSingleNode("CheckTime").InnerText) == false || Datecheck(node.SelectSingleNode("FinishTime").InnerText) == false)
+                    {
+                        MessageBox.Show(node.Attributes["id"].Value + "时间格式不对");
+                        return Tasks;
+                    }
+                    if (Enum.IsDefined(typeof(TaskPriority), (TaskPriority)Enum.Parse(typeof(TaskPriority), node.SelectSingleNode("Priority").InnerText)) == false
+                               || Enum.IsDefined(typeof(TaskStatus), (TaskStatus)Enum.Parse(typeof(TaskStatus), node.SelectSingleNode("Status").InnerText)) == false)
+                    {
+                        MessageBox.Show(node.Attributes["id"].Value + "枚举类型不对");
+                        return Tasks;
                     }
                     else
                     {
-                        MessageBox.Show(node.Attributes["id"].Value + "节点不对");
+                        task.Id = node.Attributes["id"].Value;
+                        task.Author = node.SelectSingleNode("Author").InnerText;
+                        task.SubmitTime = DateTime.ParseExact(node.SelectSingleNode("SubmitTime").InnerText, "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture);
+                        task.Priority = (TaskPriority)Enum.Parse(typeof(TaskPriority), node.SelectSingleNode("Priority").InnerText);
+                        task.DueTime = DateTime.ParseExact(node.SelectSingleNode("DueTime").InnerText, "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture);
+                        task.Assignee = node.SelectSingleNode("Assignee").InnerText;
+                        task.Content = node.SelectSingleNode("Content").InnerText;
+                        task.HandlingNote = node.SelectSingleNode("HandlingNote").InnerText;
+                        task.Status = (TaskStatus)Enum.Parse(typeof(TaskStatus), node.SelectSingleNode("Status").InnerText);
+                        task.Checker = node.SelectSingleNode("Checker").InnerText;
+                        task.CheckTime = DateTime.ParseExact(node.SelectSingleNode("CheckTime").InnerText, "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture);
+                        task.FinishTime = DateTime.ParseExact(node.SelectSingleNode("FinishTime").InnerText, "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture);
+                        Tasks.Add(task);
                     }
                 }
                 return Tasks;
@@ -70,8 +67,8 @@ namespace xworks.taskprocess
                 MessageBox.Show("文件格式不对");
                 return Tasks;
             }
-		}
-        
+        }
+
         bool Datecheck(string checkdate)
         {
             return DateTime.TryParseExact(checkdate, "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture, 
@@ -84,7 +81,6 @@ namespace xworks.taskprocess
             if (root.SelectSingleNode(NODE_NAME_TASK) != null)
             {
                 XmlNodeList rowpersonnodes = root.GetElementsByTagName(NODE_NAME_TASK);
-                List<bool> bo = new List<bool>();
                 bool bo1 = true;
                 foreach (XmlElement node in rowpersonnodes)
                 {
@@ -98,11 +94,7 @@ namespace xworks.taskprocess
                     if (node.Attributes["id"] == null || author == null || submittime == null 
                         || priority == null || duetime == null || assignee == null || content == null || status == null)
                     {
-
-                    }
-                    else
-                    {
-                       bo.Add(false);
+                        bo1 = false;
                     }
                 }
                 return bo1;
@@ -186,17 +178,17 @@ namespace xworks.taskprocess
             doc.Save(filepath);
         }
 
-        public void Addtask(TaskPriority priority,string duetime,string assignee,string content,string submittime)
+        public void Addtask(Task tasks)
         {
             Task task = new Task
                 {
                     Id = Guid.NewGuid().ToString(),
                     Author = "张三",
-                    SubmitTime = DateTime.ParseExact(submittime, "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture),
-                    Priority = priority,
-                    DueTime = DateTime.ParseExact(duetime, "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture),
-                    Assignee = assignee,
-                    Content = content,
+                    SubmitTime = tasks.SubmitTime,
+                    Priority = tasks.Priority,
+                    DueTime = tasks.DueTime,
+                    Assignee = tasks.Assignee,
+                    Content = tasks.Content,
                     HandlingNote = "",
                     Status = (TaskStatus)Enum.Parse(typeof(TaskStatus), "0"),
                     Checker = "",
@@ -218,16 +210,16 @@ namespace xworks.taskprocess
             }
         }
 
-        public void UpdateTask(string id, TaskPriority priority, string duetime, string assignee, string content)
+        public void UpdateTask(Task udtask)
         {
             foreach(Task x in Tasks)
             {
-                if (x.Id == id)
+                if (x.Id == udtask.Id)
                 {
-                    x.Priority =  priority;
-                    x.DueTime = DateTime.ParseExact(duetime, "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture);
-                    x.Assignee = assignee;
-                    x.Content = content;
+                    x.Priority = udtask.Priority;
+                    x.DueTime = udtask.DueTime;
+                    x.Assignee = udtask.Assignee;
+                    x.Content =udtask.Content;
                 }
             }
         }

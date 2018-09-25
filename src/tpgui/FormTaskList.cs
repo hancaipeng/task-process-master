@@ -25,8 +25,10 @@ namespace xworks.taskprocess
 
 		private void ToolStripButton2_Click(object sender, EventArgs e)
 		{
-			FormTaskEdit f = new FormTaskEdit();
-            f.updateoradd = "add";
+            FormTaskEdit f = new FormTaskEdit
+            {
+                updateoradd = "add"
+            };
             f.ShowDialog();
             if (f.DialogResult == DialogResult.OK)
             {
